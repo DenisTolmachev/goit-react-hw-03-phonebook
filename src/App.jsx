@@ -3,8 +3,7 @@ import { ContactForm } from 'components/Form/Form';
 import shortid from 'shortid';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { Container } from 'App.styled';
-import { Notification } from 'components/commons';
+import { Notification, Container } from 'components/commons';
 
 export class App extends Component {
   state = {
@@ -60,11 +59,14 @@ export class App extends Component {
         <ContactForm onSubmit={this.formSubmitHandler} />
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
-        {contacts.length > 0 ? (<ContactList
-          contacts={filteredContacts}
-          onDeleteContact={this.deleteContact}
-        />):(<Notification>There are no contacts in the phone book.</Notification>)}
-        
+        {contacts.length > 0 ? (
+          <ContactList
+            contacts={filteredContacts}
+            onDeleteContact={this.deleteContact}
+          />
+        ) : (
+          <Notification>There are no contacts in the phone book.</Notification>
+        )}
       </Container>
     );
   }
