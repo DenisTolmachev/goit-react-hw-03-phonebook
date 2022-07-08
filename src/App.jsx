@@ -52,7 +52,6 @@ export class App extends Component {
   render() {
     const { filter, contacts } = this.state;
     const filteredContacts = this.getVisibleContacts();
-    console.log(contacts.length);
     return (
       <Container>
         <h1>Phonebook</h1>
