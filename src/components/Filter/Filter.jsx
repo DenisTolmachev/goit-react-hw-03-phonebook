@@ -1,11 +1,10 @@
-import { FilterLabelTitle} from './Filter.styled';
-import {Input, Label} from 'components/commons';
+import { FilterLabelTitle, FilterFormLabel, FilteInput} from './Filter.styled';
 
 export const Filter = ({ value, onChange }) => {
   return (
-    <Label>
+    <FilterFormLabel>
       <FilterLabelTitle>Find contacts by name:</FilterLabelTitle>
-      <Input type="text" value={value} onChange={onChange} />
-    </Label>
+      <FilteInput type="text" value={value} onChange={onChange} />
+    </FilterFormLabel>
   );
 };
