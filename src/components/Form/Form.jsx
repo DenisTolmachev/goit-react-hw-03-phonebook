@@ -34,7 +34,7 @@ export class ContactForm extends Component {
     return normalizedName;
   };
 
-  hadleSubmit = (values, { resetForm }) => {
+  handleSubmit = (values, { resetForm }) => {
     const newName = {
       id: shortid(),
       name: this.normalizedName(values.name),
@@ -49,7 +49,7 @@ export class ContactForm extends Component {
       <Formik
         initialValues={this.state}
         validationSchema={mySchema}
-        onSubmit={this.hadleSubmit}
+        onSubmit={this.handleSubmit}
       >
         {props => (
           <ContactFormForm>
@@ -58,8 +58,8 @@ export class ContactForm extends Component {
               <ContactFormInput
                 type="text"
                 name="name"
-                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 placeholder="Rosie Simpson"
                 value={props.values.name}
                 onChange={props.handleChange}
@@ -70,8 +70,8 @@ export class ContactForm extends Component {
               <ContactFormInput
                 type="tel"
                 name="number"
-                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                 placeholder="+38 (000) 000-00-00"
                 value={props.values.number}
                 onChange={props.handleChange}
@@ -80,7 +80,6 @@ export class ContactForm extends Component {
             <Button type="submit">Add contact</Button>
           </ContactFormForm>
         )}
-        ;
       </Formik>
     );
   }
