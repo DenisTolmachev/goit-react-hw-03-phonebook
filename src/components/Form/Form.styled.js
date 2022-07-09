@@ -20,3 +20,9 @@ export const ContactFormInput = styled(Field)`
   width: 200px;
   font-size: ${props => props.theme.fontSizes.m};
 `;
+
+export const ErrorText = styled.p`
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: 14px;
+  color: red;
+`;

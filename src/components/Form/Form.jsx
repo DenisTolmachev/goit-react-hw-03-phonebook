@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import {
   ContactFormForm,
   ContactFormLabel,
   ContactFormInput,
+  ErrorText
 } from './Form.styled';
 import { Button } from 'components/commons';
 
@@ -64,6 +65,7 @@ export class ContactForm extends Component {
                 value={props.values.name}
                 onChange={props.handleChange}
               />
+              <ErrorMessage name="name" render={msg => <ErrorText>{msg}</ErrorText>}/>
             </ContactFormLabel>
             <ContactFormLabel>
               Number
@@ -76,6 +78,7 @@ export class ContactForm extends Component {
                 value={props.values.number}
                 onChange={props.handleChange}
               />
+              <ErrorMessage name="number" render={msg => <ErrorText>{msg}</ErrorText>}/>
             </ContactFormLabel>
             <Button type="submit">Add contact</Button>
           </ContactFormForm>
