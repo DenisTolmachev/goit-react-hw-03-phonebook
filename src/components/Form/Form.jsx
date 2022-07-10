@@ -12,7 +12,7 @@ import { Button } from 'components/commons';
 
 const mySchema = yup.object().shape({
   name: yup.string().min(2).required('Name is required'),
-  number: yup.string().length(9).required('Number is required'),
+  number: yup.string().length(7).required('Number is required'),
 });
 
 export class ContactForm extends Component {
@@ -27,18 +27,10 @@ export class ContactForm extends Component {
     return normalizedNumber;
   };
 
-  normalizedName = str => {
-    const normalizedName = str
-      .split(' ')
-      .map(item => item[0].toUpperCase() + item.slice(1))
-      .join(' ');
-    return normalizedName;
-  };
-
   handleSubmit = (values, { resetForm }) => {
     const newName = {
       id: shortid(),
-      name: this.normalizedName(values.name),
+      name: values.name,
       number: this.normalizedNumber(values.number),
     };
     this.props.onSubmit(newName);
@@ -59,8 +51,8 @@ export class ContactForm extends Component {
               <ContactFormInput
                 type="text"
                 name="name"
-                // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 placeholder="Rosie Simpson"
                 value={props.values.name}
                 onChange={props.handleChange}
@@ -72,8 +64,8 @@ export class ContactForm extends Component {
               <ContactFormInput
                 type="tel"
                 name="number"
-                // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                 placeholder="+38 (000) 000-00-00"
                 value={props.values.number}
                 onChange={props.handleChange}
