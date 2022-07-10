@@ -41,7 +41,7 @@ export class App extends Component {
     console.log(this.state.filter);
   };
 
-  getVisibleContacts = () => {
+  getFiteredContacts = () => {
     const { contacts, filter } = this.state;
     const normalizedContacts = filter.toLowerCase();
     return contacts.filter(contact =>
@@ -49,9 +49,22 @@ export class App extends Component {
     );
   };
 
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    if (contacts) {
+      this.setState({ contacts: JSON.parse(contacts) });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   render() {
     const { filter, contacts } = this.state;
-    const filteredContacts = this.getVisibleContacts();
+    const filteredContacts = this.getFiteredContacts();
     return (
       <Container>
         <h1>Phonebook</h1>
