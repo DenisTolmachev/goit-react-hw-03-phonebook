@@ -3,7 +3,10 @@ import { ContactForm } from 'components/Form/Form';
 import shortid from 'shortid';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { Notification, Container } from 'components/commons';
+import { Notification } from 'components/common/Notification.styled';
+import { Container } from 'components/common/Container.styled';
+
+const KEY = 'contacts';
 
 export class App extends Component {
   state = {
@@ -16,16 +19,18 @@ export class App extends Component {
     filter: '',
   };
 
+  
+
   componentDidMount() {
-    const contacts = localStorage.getItem('contacts');
+    const contacts = localStorage.getItem(KEY);
     if (contacts) {
       this.setState({ contacts: JSON.parse(contacts) });
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     if (prevState.contacts !== this.state.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      localStorage.setItem(KEY, JSON.stringify(this.state.contacts));
     }
   }
 

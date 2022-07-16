@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import shortid from 'shortid';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import {
@@ -8,7 +7,7 @@ import {
   ContactFormInput,
   ErrorText
 } from './Form.styled';
-import { Button } from 'components/commons';
+import { Button } from 'components/common/Button.styled';
 
 const mySchema = yup.object().shape({
   name: yup.string().min(2).required('Name is required'),
@@ -29,7 +28,6 @@ export class ContactForm extends Component {
 
   handleSubmit = (values, { resetForm }) => {
     const newName = {
-      id: shortid(),
       name: values.name,
       number: this.normalizedNumber(values.number),
     };

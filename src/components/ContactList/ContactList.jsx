@@ -3,7 +3,7 @@ import {
   ContactListItem,
   ContactsListText,
 } from './ContactList.styled';
-import {Button} from 'components/commons'
+import {Button} from 'components/common/Button.styled'
 
 export const ContactList = ({ contacts, onDeleteContact }) => {
   return (
